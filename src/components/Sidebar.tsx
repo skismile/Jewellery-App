@@ -68,7 +68,7 @@ export default function Sidebar() {
           )}
         >
           <div className="relative flex items-center gap-3">
-            {/* Logo Icon - 'B' for BEYONDNMORE */}
+            {/* Logo Icon - 'B' for Jewellery */}
             <div className="h-8 w-8 bg-indigo-600 text-white rounded flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
               B
             </div>
@@ -81,7 +81,7 @@ export default function Sidebar() {
               )}
             >
               <span className="font-bold text-lg tracking-tight text-zinc-900 dark:text-zinc-100">
-                BEYONDNMORE
+                Jewellery
               </span>
             </div>
           </div>

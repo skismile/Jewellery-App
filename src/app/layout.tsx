@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BeyondNMore",
-  description: "BeyondNMore",
+  title: "Jewellery",
+  description: "Jewellery",
 };
 
 export default function RootLayout({

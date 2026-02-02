@@ -1071,7 +1071,7 @@ export default function PricingFormPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    
       <Card>
         <CardContent className="space-y-6 pt-6">
           {/* Header */}
@@ -1182,7 +1182,7 @@ export default function PricingFormPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+  
   );
 }
 

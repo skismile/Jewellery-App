@@ -45,7 +45,7 @@ const MOCK_USERS: User[] = [
     id: "1",
     first_name: "Alok",
     last_name: "Admin",
-    email: "alok@beyondnmore.com",
+    email: "alok@Jewellery.com",
     role: "admin",
     work_group: "none",
     active: true,
@@ -55,7 +55,7 @@ const MOCK_USERS: User[] = [
     id: "2",
     first_name: "Anushka",
     last_name: "Bansal",
-    email: "anushka@beyondnmore.com",
+    email: "anushka@Jewellery.com",
     role: "publisher",
     work_group: "group1", // [cite: 374]
     active: true,

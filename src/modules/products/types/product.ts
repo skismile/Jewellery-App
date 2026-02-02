@@ -29,7 +29,7 @@ export type ProductStatus =
 export interface Product {
   id: number;
   name: string;
-  brand: string;
+  Seller: string;
   thumbnail_url?: string;
   designer: string;
   status: ProductStatus;

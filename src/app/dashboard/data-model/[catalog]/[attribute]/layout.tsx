@@ -33,13 +33,13 @@ const GROUPS: AttributeGroup[] = [
     count: 8,
     icon: <Scale className="w-4 h-4" />,
   },
-  {
-    id: "stone-details",
-    name: "Stone / Diamond",
-    description: "Diamond & gemstone configuration",
-    count: 9,
-    icon: <Gem className="w-4 h-4" />,
-  },
+  // {
+  //   id: "stone-details",
+  //   name: "Stone / Diamond",
+  //   description: "Diamond & gemstone configuration",
+  //   count: 9,
+  //   icon: <Gem className="w-4 h-4" />,
+  // },
   {
     id: "design",
     name: "Design",

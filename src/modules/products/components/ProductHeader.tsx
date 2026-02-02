@@ -41,7 +41,7 @@ export default function ProductHeader({ product }: ProductHeaderProps) {
             </Badge>
           </div>
           <span className="text-xs text-muted-foreground">
-            {product.brand} • {product.furniture_type}
+            {product.Seller} • {product.furniture_type}
           </span>
         </div>
       </div>

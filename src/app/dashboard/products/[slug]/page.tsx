@@ -44,7 +44,7 @@ type ProductStatus = "open" | "closed" | "new";
 // {
 // id: 1,
 // name: "Luna Diamond Ring",
-// brand: "Nordic Jewels",
+// Seller: "Nordic Jewels",
 // thumbnail_url:
 //   "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=987&auto=format&fit=crop",
 // designer: "Marco Bellini",
@@ -86,7 +86,7 @@ type ProductStatus = "open" | "closed" | "new";
 export const MOCK_PRODUCT: Product = {
   id: 1,
   name: "Luna Diamond Ring",
-  brand: "Nordic Jewels",
+  Seller: "Nordic Jewels",
   thumbnail_url:
     "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=987&auto=format&fit=crop",
   designer: "Marco Bellini",

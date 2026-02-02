@@ -104,8 +104,8 @@
 //   }, // Changed type to match 'text' w/ validation
 //   {
 //     id: "5",
-//     name: "Brand",
-//     key: "brand",
+//     name: "Seller",
+//     key: "Seller",
 //     type: "select",
 //     required: true,
 //     order: 5,
@@ -260,13 +260,13 @@ const GROUPS: AttributeGroup[] = [
     count: 4,
     icon: <Scale className="w-4 h-4" />,
   },
-  {
-    id: "stone-details",
-    name: "Stone / Diamond",
-    description: "Diamond & gemstone configuration",
-    count: 4,
-    icon: <Gem className="w-4 h-4" />,
-  },
+  // {
+  //   id: "stone-details",
+  //   name: "Stone / Diamond",
+  //   description: "Diamond & gemstone configuration",
+  //   count: 4,
+  //   icon: <Gem className="w-4 h-4" />,
+  // },
   {
     id: "design",
     name: "Design",
@@ -327,8 +327,8 @@ const INITIAL_ATTRIBUTES: Record<string, Attribute[]> = {
     },
     {
       id: "4",
-      name: "Brand",
-      key: "brand",
+      name: "Seller",
+      key: "Seller",
       type: "select",
       required: true,
       order: 4,
@@ -864,4 +864,3 @@ export default function DataModelPage({
     </main>
   );
 }
-

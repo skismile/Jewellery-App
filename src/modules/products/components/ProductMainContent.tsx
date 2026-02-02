@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
@@ -32,13 +33,30 @@ import ProductVariantsTab from "./ProductVariantsTab";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import ProductDimensions from "./ProductDimensions";
 import MetalDetails from "./ProductMetalDetails";
+import CertificationDetails from "./CertificationDetails";
+import PublishingDetails from "./PublishingDetails";
+import DesignDetails from "./DesignDetails";
 
 // --- MOCK SCHEMA DATA ---
 const SCHEMA_GROUPS: AttributeGroup[] = [
   {
-    id: "core",
-    name: "Overview",
+    id: "product-info",
+    name: "Product Info",
     description: "Basic product information",
+    count: 4,
+    icon: <Info className="w-4 h-4" />,
+  },
+  {
+    id: "product-dimensions",
+    name: "Product Dimensions",
+    description: "Basic product information",
+    count: 4,
+    icon: <Info className="w-4 h-4" />,
+  },
+  {
+    id: "metal-details",
+    name: "Metal Details",
+    description: "Metal Configuration",
     count: 4,
     icon: <Info className="w-4 h-4" />,
   },
@@ -46,6 +64,27 @@ const SCHEMA_GROUPS: AttributeGroup[] = [
     id: "specs",
     name: "Design Specs",
     description: "Technical specifications",
+    count: 6,
+    icon: <LayoutGrid className="w-4 h-4" />,
+  },
+  {
+    id: "certification",
+    name: "Certification",
+    description: "Hallmark & authenticity",
+    count: 6,
+    icon: <LayoutGrid className="w-4 h-4" />,
+  },
+  {
+    id: "pricing",
+    name: "Pricing",
+    description: "Price & tax calculation",
+    count: 6,
+    icon: <LayoutGrid className="w-4 h-4" />,
+  },
+  {
+    id: "publishing",
+    name: "Publishing",
+    description: "Visibility & SEO",
     count: 6,
     icon: <LayoutGrid className="w-4 h-4" />,
   },
@@ -71,8 +110,8 @@ const SCHEMA_ATTRIBUTES: Attribute[] = [
   },
   {
     id: "2",
-    name: "Brand",
-    key: "brand",
+    name: "Seller",
+    key: "Seller",
     type: "select",
     required: true,
     order: 2,
@@ -222,7 +261,7 @@ const ProductMainContent = ({ product }: { product: Product }) => {
   // Form State (Shared between views)
   const [formData, setFormData] = useState<Record<string, any>>({
     name: product.name,
-    brand: product.brand.toLowerCase(),
+    Seller: product.Seller.toLowerCase(),
     description: product.description,
   });
 
@@ -233,7 +272,7 @@ const ProductMainContent = ({ product }: { product: Product }) => {
   // Helper to filter attributes per group (Memoized logic)
   const getGroupAttributes = (groupId: string) => {
     return SCHEMA_ATTRIBUTES.filter((attr) => {
-      if (groupId === "core")
+      if (groupId === "product-info")
         return ["1", "2", "3", "4", "5"].includes(attr.id);
       if (groupId === "specs") return [, "6", "7"].includes(attr.id);
       if (groupId === "logistics") return ["8", "9"].includes(attr.id);
@@ -310,63 +349,59 @@ const ProductMainContent = ({ product }: { product: Product }) => {
                     </div>
                   </TabsTrigger>
                 ))}
-                <TabsTrigger
-                  value="pricing"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Pricing & Variants
-                </TabsTrigger>
-                <TabsTrigger
-                  value="media"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Product Dimensions
-                </TabsTrigger>
-                <TabsTrigger
-                  value="metal-details"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Metal Details
-                </TabsTrigger>
               </TabsList>
             </div>
 
             {/* Dynamic Groups */}
-            {SCHEMA_GROUPS.map((group) => (
-              <TabsContent
-                key={group.id}
-                value={group.id}
-                className="space-y-6 mt-0"
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{group.name}</CardTitle>
-                    <CardDescription>{group.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {getGroupAttributes(group.id).map((attr) => (
-                        <DynamicAttributeField
-                          key={attr.id}
-                          attribute={attr}
-                          value={formData[attr.key]}
-                          onChange={(val) => handleFieldChange(attr.key, val)}
-                        />
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            ))}
+            {SCHEMA_GROUPS.map(
+              (group) =>
+                ["product-info"].includes(activeTab) && (
+                  <TabsContent
+                    key={group.id}
+                    value={group.id}
+                    className="space-y-6 mt-0"
+                  >
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>{group.name}</CardTitle>
+                        <CardDescription>{group.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {getGroupAttributes(group.id).map((attr) => (
+                            <DynamicAttributeField
+                              key={attr.id}
+                              attribute={attr}
+                              value={formData[attr.key]}
+                              onChange={(val) =>
+                                handleFieldChange(attr.key, val)
+                              }
+                            />
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                ),
+            )}
 
             <TabsContent value="pricing" className="mt-0">
               <ProductVariantsTab />
             </TabsContent>
-            <TabsContent value="media" className="mt-0">
+            <TabsContent value="product-dimensions" className="mt-0">
               <ProductDimensions />
             </TabsContent>
             <TabsContent value="metal-details" className="mt-0">
               <MetalDetails />
+            </TabsContent>
+            <TabsContent value="certification" className="mt-0">
+              <CertificationDetails />
+            </TabsContent>
+            <TabsContent value="publishing" className="mt-0">
+              <PublishingDetails />
+            </TabsContent>
+            <TabsContent value="specs" className="mt-0">
+              <DesignDetails />
             </TabsContent>
           </Tabs>
         )}
@@ -435,7 +470,7 @@ const ProductMainContent = ({ product }: { product: Product }) => {
                 <ProductVariantsTab />
               </AccordionContent>
             </AccordionItem>
-  {/* <TabsTrigger
+            {/* <TabsTrigger
                   value="pricing"
                   className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
                 >
@@ -463,7 +498,9 @@ const ProductMainContent = ({ product }: { product: Product }) => {
                   <div className="p-2 bg-muted/50 rounded-md text-blue-600">
                     <ImageIcon className="w-4 h-4" />
                   </div>
-                  <span className="font-semibold text-foreground">Product Dimensions</span>
+                  <span className="font-semibold text-foreground">
+                    Product Dimensions
+                  </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="pt-2 pb-6">
@@ -479,7 +516,9 @@ const ProductMainContent = ({ product }: { product: Product }) => {
                   <div className="p-2 bg-muted/50 rounded-md text-blue-600">
                     <ImageIcon className="w-4 h-4" />
                   </div>
-                  <span className="font-semibold text-foreground">Metal Details</span>
+                  <span className="font-semibold text-foreground">
+                    Metal Details
+                  </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="pt-2 pb-6">

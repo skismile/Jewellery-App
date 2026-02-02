@@ -103,13 +103,13 @@ export default function ProductList({
       //   enableResizing: false,
       // },
 
-      // 2. Brand
+      // 2. Seller
       {
-        accessorKey: "brand",
+        accessorKey: "Seller",
         header: "Seller Name",
         cell: ({ row }) => (
           <span className="font-medium text-foreground">
-            {row.getValue("brand")}
+            {row.getValue("Seller")}
           </span>
         ),
         size: 140,

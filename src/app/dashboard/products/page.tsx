@@ -13,7 +13,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 1,
     name: "Luna Diamond Ring",
-    brand: "Nordic Jewels",
+    Seller: "Nordic Jewels",
     thumbnail_url:
       "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=987&auto=format&fit=crop",
     designer: "Marco Bellini",
@@ -56,7 +56,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 2,
     name: "Arco Gold Pendant",
-    brand: "Linea Italia Jewels",
+    Seller: "Linea Italia Jewels",
     thumbnail_url:
       "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f",
     designer: "Giulio Romano",
@@ -99,7 +99,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 3,
     name: "Verona Diamond Necklace",
-    brand: "CasaForma Jewels",
+    Seller: "CasaForma Jewels",
     thumbnail_url:
       "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338",
     designer: "Alessandro Neri",
@@ -141,7 +141,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 4,
     name: "Nova Bridal Necklace Set",
-    brand: "Atelier Bridal Jewels",
+    Seller: "Atelier Bridal Jewels",
     thumbnail_url:
       "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0",
     designer: "Sofia Laurent",
@@ -184,7 +184,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: 5,
     name: "Linea Gold Bangle",
-    brand: "Forma Studio Jewels",
+    Seller: "Forma Studio Jewels",
     thumbnail_url:
       "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
     designer: "Henrik Olsen",

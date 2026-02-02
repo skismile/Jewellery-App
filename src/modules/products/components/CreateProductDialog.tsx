@@ -23,57 +23,47 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function CreateProductDialog() {
-
   const catalogs = [
-  {
-    id: "rings",
-    name: "Rings",
-
-  },
-  {
-    id: "necklaces",
-    name: "Necklaces",
-
-  },
-  {
-    id: "earrings",
-    name: "Earrings",
-
-  },
-  {
-    id: "bangles",
-    name: "Bangles & Bracelets",
-
-  },
-];
+    {
+      id: "rings",
+      name: "Rings",
+    },
+    {
+      id: "necklaces",
+      name: "Necklaces",
+    },
+    {
+      id: "earrings",
+      name: "Earrings",
+    },
+    {
+      id: "bangles",
+      name: "Bangles & Bracelets",
+    },
+  ];
   const brands = [
-  {
-    id: "nordicjewels",
-    name: "Nordic Jewels",
+    {
+      id: "nordicjewels",
+      name: "Nordic Jewels",
+    },
+    {
+      id: "lineaitaliajewels",
+      name: "Linea Italia Jewels",
+    },
+    {
+      id: "casaFormajewels",
+      name: "CasaForma Jewels",
+    },
 
-  },
-  {
-    id: "lineaitaliajewels",
-    name: "Linea Italia Jewels",
-
-  },
-  {
-    id: "casaFormajewels",
-    name: "CasaForma Jewels",
-
-  },
- 
-  {
-    id: "atelierbridaljewels",
-    name: "Atelier Bridal Jewels",
-
-  },
-  {
-    id: "formastudiojewels",
-    name: "Forma Studio Jewels",
-
-  },
-];
+    {
+      id: "atelierbridaljewels",
+      name: "Atelier Bridal Jewels",
+    },
+    {
+      id: "formastudiojewels",
+      name: "Forma Studio Jewels",
+    },
+  ];
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -126,7 +116,6 @@ export function CreateProductDialog() {
                     <SelectValue placeholder="Select Category..." />
                   </SelectTrigger>
                   <SelectContent>
-
                     {catalogs.map((catalog) => (
                       <SelectItem key={catalog.id} value={catalog.name}>
                         {catalog.name}
@@ -151,13 +140,17 @@ export function CreateProductDialog() {
             <div className="space-y-4 animate-in fade-in slide-in-from-right-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Brand Name</Label>
+                  <Label>Seller Name</Label>
                   <Select>
                     <SelectTrigger>
                       <SelectValue placeholder="Select..." />
                     </SelectTrigger>
                     <SelectContent>
-                      {brands.map((b)=><SelectItem key={b.id} value={b.name}>{b.name}</SelectItem>)}
+                      {brands.map((b) => (
+                        <SelectItem key={b.id} value={b.name}>
+                          {b.name}
+                        </SelectItem>
+                      ))}
                       {/* <SelectItem value="Gyform">Gyform</SelectItem>
                       <SelectItem value="Minotti">Minotti</SelectItem>
                       <SelectItem value="B&B Italia">B&B Italia</SelectItem> */}
