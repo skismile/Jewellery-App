@@ -235,7 +235,7 @@ const ProductMainContent = ({ product }: { product: Product }) => {
     return SCHEMA_ATTRIBUTES.filter((attr) => {
       if (groupId === "core")
         return ["1", "2", "3", "4", "5"].includes(attr.id);
-      if (groupId === "specs") return [, "5", "6", "7"].includes(attr.id);
+      if (groupId === "specs") return [, "6", "7"].includes(attr.id);
       if (groupId === "logistics") return ["8", "9"].includes(attr.id);
       return false;
     }).sort((a, b) => (a.order || 0) - (b.order || 0));

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -71,41 +72,41 @@ export default function ProductList({
     specs_arms: false,
     specs_back: false,
   });
-  const [rowSelection, setRowSelection] = useState({});
+  // const [rowSelection, setRowSelection] = useState({});
   const [columnResizeMode] = useState<ColumnResizeMode>("onChange");
 
   // --- Column Definitions ---
   const columns = useMemo<ColumnDef<Product>[]>(
     () => [
       // 1. Checkbox (Fixed Width)
-      {
-        id: "select",
-        header: ({ table }) => (
-          <Checkbox
-            checked={table.getIsAllPageRowsSelected()}
-            onCheckedChange={(value) =>
-              table.toggleAllPageRowsSelected(!!value)
-            }
-            aria-label="Select all"
-            className="translate-y-[2px] border-muted-foreground/50"
-          />
-        ),
-        cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-            aria-label="Select row"
-            className="translate-y-[2px] border-muted-foreground/50"
-          />
-        ),
-        size: 40,
-        enableResizing: false,
-      },
+      // {
+      //   id: "select",
+      //   header: ({ table }) => (
+      //     <Checkbox
+      //       checked={table.getIsAllPageRowsSelected()}
+      //       onCheckedChange={(value) =>
+      //         table.toggleAllPageRowsSelected(!!value)
+      //       }
+      //       aria-label="Select all"
+      //       className="translate-y-[2px] border-muted-foreground/50"
+      //     />
+      //   ),
+      //   cell: ({ row }) => (
+      //     <Checkbox
+      //       checked={row.getIsSelected()}
+      //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+      //       aria-label="Select row"
+      //       className="translate-y-[2px] border-muted-foreground/50"
+      //     />
+      //   ),
+      //   size: 40,
+      //   enableResizing: false,
+      // },
 
       // 2. Brand
       {
         accessorKey: "brand",
-        header: "Brand Name",
+        header: "Seller Name",
         cell: ({ row }) => (
           <span className="font-medium text-foreground">
             {row.getValue("brand")}
@@ -329,11 +330,11 @@ export default function ProductList({
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
+    // onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnVisibility,
-      rowSelection,
+      // rowSelection,
     },
   });
 
@@ -457,6 +458,7 @@ export default function ProductList({
 }
 
 // --- Column Toggle Dropdown ---
+
 function ColumnToggleDropdown({ table }: { table: any }) {
   const [searchTerm, setSearchTerm] = useState("");
 

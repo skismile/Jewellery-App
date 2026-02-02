@@ -245,7 +245,7 @@ export default function ProductDashboard() {
       {/* Action Bar (Between Header and List) */}
       <div className="h-16 px-8 flex items-center justify-between border-b bg-background">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="font-semibold text-foreground">Sofas</span>
+          <span className="font-semibold text-foreground">Rings</span>
           <span>/</span>
           <span>All Products</span>
           <span className="ml-2 bg-muted px-2 py-0.5 rounded text-xs">
