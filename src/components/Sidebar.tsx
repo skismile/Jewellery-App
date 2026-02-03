@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Sofa,
-  Armchair,
+  ShoppingBag,
+  FileText,
+  Sparkles,
   Table as TableIcon,
   AlertCircle,
+  CircleDot,
+  Heart,
   Database,
   Users,
   Settings,
@@ -17,6 +21,8 @@ import {
   BarChart3,
   LogOut,
   Gem,
+  Hammer,
+  Store,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -70,7 +76,7 @@ export default function Sidebar() {
           <div className="relative flex items-center gap-3">
             {/* Logo Icon - 'B' for Jewellery */}
             <div className="h-8 w-8 bg-indigo-600 text-white rounded flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
-              B
+              J
             </div>
 
             {/* Logo Text */}
@@ -88,33 +94,61 @@ export default function Sidebar() {
         </div>
 
         {/* 3. Navigation Content */}
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-6 gap-6 flex flex-col">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden py-6 gap-1 flex flex-col">
           {/* ZONE A: WORKSPACE (Daily Ops) */}
           <div className="px-3 space-y-1">
             <GroupLabel label="Catalog" collapsed={isCollapsed} />
-            {/* <NavItem
-              href="/dashboard/products?t=sofas"
-              icon={<Sofa size={20} />}
-              label="Sofas"
-              collapsed={isCollapsed}
-              active={searchParams.get("t") === "sofas"}
-            /> */}
             <NavItem
               href="/dashboard/products?t=rings"
-              icon={<Gem className="h-4 w-4" />}
+              icon={<CircleDot className="h-4 w-4" />} // Ring-like shape
               label="Rings"
               collapsed={isCollapsed}
               active={searchParams.get("t") === "rings"}
             />
+
             <NavItem
-              href="/dashboard/products?t=tables"
-              icon={<TableIcon size={20} />}
-              label="Tables"
+              href="/dashboard/necklace"
+              icon={<Sparkles className="h-4 w-4" />} // Premium/jewellery feel
+              label="Necklace"
               collapsed={isCollapsed}
-              active={searchParams.get("t") === "tables"}
+              active={searchParams.get("t") === "necklace"}
+            />
+
+            <NavItem
+              href="/dashboard/earring"
+              icon={<Gem className="h-4 w-4" />} // Fashion/accessory vibe
+              label="Earrings"
+              collapsed={isCollapsed}
+              active={searchParams.get("t") === "earring"}
             />
           </div>
 
+          <div className="px-3 space-y-0">
+            <GroupLabel label="Operations" collapsed={isCollapsed} />
+            <NavItem
+              href="/dashboard/orders"
+              icon={<ShoppingBag className="h-4 w-4" />}
+              label="Orders"
+              collapsed={isCollapsed}
+              active={pathname === "/dashboard/orders"}
+            />
+
+            <NavItem
+              href="/dashboard/rfq"
+              icon={<FileText className="h-4 w-4" />}
+              label="RFQ"
+              collapsed={isCollapsed}
+              active={pathname === "/dashboard/rfq"}
+            />
+
+            <NavItem
+              href="/dashboard/customers"
+              icon={<Users className="h-4 w-4" />}
+              label="Customers"
+              collapsed={isCollapsed}
+              active={pathname === "/dashboard/customers"}
+            />
+          </div>
           <div className="px-3 space-y-1">
             <GroupLabel label="Operations" collapsed={isCollapsed} />
             {/* <NavItem
@@ -129,41 +163,55 @@ export default function Sidebar() {
               collapsed={isCollapsed}
               badge="12"
             /> */}
+          </div>
+
+          <div className="px-3">
+            <Separator className="bg-zinc-100 dark:bg-zinc-800" />
+            <NavItem
+              href="/dashboard/sellers"
+              icon={<Store className="h-4 w-4" />}
+              label="Sellers"
+              collapsed={isCollapsed}
+              active={pathname === "/dashboard/sellers"}
+            />
+
+            <NavItem
+              href="/dashboard/artisans"
+              icon={<Hammer className="h-4 w-4" />}
+              label="Artisans"
+              collapsed={isCollapsed}
+              active={pathname === "/dashboard/artisans"}
+            />
+          </div>
+
+          {/* ZONE B: ADMIN DECK (Management) */}
+          <div className="px-3 space-y-0">
+            <GroupLabel label="System" collapsed={isCollapsed} />
             <NavItem
               href="/dashboard/data-model"
               icon={<Database size={20} />}
               label="Data Model"
               collapsed={isCollapsed}
             />
-          </div>
-
-          <div className="px-3">
-            <Separator className="bg-zinc-100 dark:bg-zinc-800" />
-          </div>
-
-          {/* ZONE B: ADMIN DECK (Management) */}
-          <div className="px-3 space-y-1">
-            <GroupLabel label="System" collapsed={isCollapsed} />
-
             <NavItem
               href="/dashboard/user-directory"
               icon={<Users size={20} />}
-              label="User Directory"
+              label="User"
               collapsed={isCollapsed}
               active={pathname === "/dashboard/user-directory"}
             />
-            <NavItem
+            {/* <NavItem
               href="/dashboard/insights"
               icon={<BarChart3 size={20} />}
               label="Insights & Logs"
               collapsed={isCollapsed}
-            />
-            <NavItem
+            /> */}
+            {/* <NavItem
               href="/dashboard/dictionary"
               icon={<BookOpen size={20} />}
               label="Dictionary"
               collapsed={isCollapsed}
-            />
+            /> */}
             <NavItem
               href="/dashboard/settings"
               icon={<Settings size={20} />}

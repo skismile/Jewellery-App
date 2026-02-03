@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Product } from "../types/product";
 import { AttributeGroup, Attribute } from "@/modules/products/types/data-model";
 import {
+  
   AlertCircle,
   Database,
   Info,
@@ -415,82 +416,54 @@ const ProductMainContent = ({ product }: { product: Product }) => {
             defaultValue={SCHEMA_GROUPS[0].id}
           >
             {/* Dynamic Groups */}
-            {SCHEMA_GROUPS.map((group) => (
-              <AccordionItem
-                key={group.id}
-                value={group.id}
-                className="border rounded-lg bg-card px-4"
-              >
-                <AccordionTrigger className="hover:no-underline py-4">
-                  <div className="flex items-center gap-3 text-base">
-                    <div className="p-2 bg-muted/50 rounded-md text-blue-600">
-                      {group.icon}
-                    </div>
-                    <div className="text-left">
-                      <div className="font-semibold text-foreground">
-                        {group.name}
+            {SCHEMA_GROUPS.map(
+              (group) =>
+                ["product-info"].includes(group.id) && (
+                  <AccordionItem
+                    key={group.id}
+                    value={group.id}
+                    className="border rounded-lg bg-card px-4"
+                  >
+                    <AccordionTrigger className="hover:no-underline py-4">
+                      <div className="flex items-center gap-3 text-base">
+                        <div className="p-2 bg-muted/50 rounded-md text-blue-600">
+                          {group.icon}
+                        </div>
+                        <div className="text-left">
+                          <div className="font-semibold text-foreground">
+                            {group.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground font-normal">
+                            {group.description}
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-xs text-muted-foreground font-normal">
-                        {group.description}
+                    </AccordionTrigger>
+
+                    <AccordionContent className="pt-2 pb-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1">
+                        {getGroupAttributes(group.id).map(
+                          (attr) =>
+                            ["product-info"].includes(activeTab) && (
+                              <DynamicAttributeField
+                                key={attr.id}
+                                attribute={attr}
+                                value={formData[attr.key]}
+                                onChange={(val) =>
+                                  handleFieldChange(attr.key, val)
+                                }
+                              />
+                            ),
+                        )}
                       </div>
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-2 pb-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1">
-                    {getGroupAttributes(group.id).map((attr) => (
-                      <DynamicAttributeField
-                        key={attr.id}
-                        attribute={attr}
-                        value={formData[attr.key]}
-                        onChange={(val) => handleFieldChange(attr.key, val)}
-                      />
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                ),
+            )}
 
             {/* Fixed Pricing Group */}
             <AccordionItem
-              value="pricing"
-              className="border rounded-lg bg-card px-4"
-            >
-              <AccordionTrigger className="hover:no-underline py-4">
-                <div className="flex items-center gap-3 text-base">
-                  <div className="p-2 bg-muted/50 rounded-md text-blue-600">
-                    <Database className="w-4 h-4" />
-                  </div>
-                  <span className="font-semibold text-foreground">
-                    Pricing & Variants
-                  </span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pt-2 pb-6">
-                <ProductVariantsTab />
-              </AccordionContent>
-            </AccordionItem>
-            {/* <TabsTrigger
-                  value="pricing"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Pricing & Variants
-                </TabsTrigger>
-                <TabsTrigger
-                  value="media"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Product Dimensions
-                </TabsTrigger>
-                <TabsTrigger
-                  value="metal-details"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm border border-transparent data-[state=active]:border-border px-4 py-2"
-                >
-                  Metal Details
-                </TabsTrigger> */}
-            {/* Fixed Media Group */}
-            <AccordionItem
-              value="media"
+              value="product-dimensions"
               className="border rounded-lg bg-card px-4"
             >
               <AccordionTrigger className="hover:no-underline py-4">
@@ -523,6 +496,79 @@ const ProductMainContent = ({ product }: { product: Product }) => {
               </AccordionTrigger>
               <AccordionContent className="pt-2 pb-6">
                 <MetalDetails />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="design-specs"
+              className="border rounded-lg bg-card px-4"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3 text-base">
+                  <div className="p-2 bg-muted/50 rounded-md text-blue-600">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <span className="font-semibold text-foreground">
+                    Design Specs
+                  </span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pt-2 pb-6">
+                <DesignDetails />
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem
+              value="certification"
+              className="border rounded-lg bg-card px-4"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3 text-base">
+                  <div className="p-2 bg-muted/50 rounded-md text-blue-600">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <span className="font-semibold text-foreground">
+                    Certification
+                  </span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pt-2 pb-6">
+                <CertificationDetails />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="pricing"
+              className="border rounded-lg bg-card px-4"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3 text-base">
+                  <div className="p-2 bg-muted/50 rounded-md text-blue-600">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <span className="font-semibold text-foreground">
+                    Pricing & Variants
+                  </span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pt-2 pb-6">
+                <ProductVariantsTab />
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="publishing"
+              className="border rounded-lg bg-card px-4"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3 text-base">
+                  <div className="p-2 bg-muted/50 rounded-md text-blue-600">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <span className="font-semibold text-foreground">
+                    Publishing
+                  </span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pt-2 pb-6">
+                <PublishingDetails />
               </AccordionContent>
             </AccordionItem>
           </Accordion>

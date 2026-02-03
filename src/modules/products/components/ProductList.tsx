@@ -104,16 +104,6 @@ export default function ProductList({
       // },
 
       // 2. Seller
-      {
-        accessorKey: "Seller",
-        header: "Seller Name",
-        cell: ({ row }) => (
-          <span className="font-medium text-foreground">
-            {row.getValue("Seller")}
-          </span>
-        ),
-        size: 140,
-      },
 
       // 3. Product Name (Combined ID + Thumb)
       {
@@ -154,7 +144,16 @@ export default function ProductList({
         },
         size: 280,
       },
-
+      {
+        accessorKey: "Seller",
+        header: "Seller Name",
+        cell: ({ row }) => (
+          <span className="font-medium text-foreground">
+            {row.getValue("Seller")}
+          </span>
+        ),
+        size: 140,
+      },
       // 4. Category
       {
         accessorKey: "category",
