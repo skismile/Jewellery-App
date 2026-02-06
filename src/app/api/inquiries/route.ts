@@ -34,3 +34,39 @@ export async function POST(req: Request) {
     );
   }
 }
+  // DELETE: Delete inquiry by ID
+export async function DELETE(req: Request) {
+  try {
+    await dbConnect();
+
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { success: false, message: "Inquiry ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const deleted = await Inquiry.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return NextResponse.json(
+        { success: false, message: "Inquiry not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Inquiry deleted successfully", data: deleted },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
